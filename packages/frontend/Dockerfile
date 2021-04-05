@@ -7,8 +7,10 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn generate
+ARG GOOGLE_MAP_KEY
+ENV GOOGLE_MAP_KEY "${GOOGLE_MAP_KEY}"
 
+RUN yarn generate
 
 FROM nginx:stable-alpine
 

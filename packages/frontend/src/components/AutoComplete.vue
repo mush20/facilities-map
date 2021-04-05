@@ -72,7 +72,6 @@ export default class AutoComplete extends Vue {
 
   @Watch("data")
   handleData(val: unknown[]) {
-    console.log(val.length);
     this.show = val.length > 0;
   }
 }

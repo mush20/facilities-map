@@ -38,7 +38,6 @@ export default class HomePage extends Vue {
 
   test(test: string) {
     this.search(test);
-    console.log(`viva-${test}`);
   }
 }
 </script>
