@@ -32,55 +32,55 @@
   </section>
 </template>
 <script lang="ts">
-import "vuejs-google-maps/dist/vuejs-google-maps.css"
-import { Facility } from "~/store/facilities"
+import "vuejs-google-maps/dist/vuejs-google-maps.css";
+import { Facility } from "@/store/facilities";
 
-import { Component, Prop, Vue, Watch } from "nuxt-property-decorator"
+import { Component, Prop, Vue, Watch } from "nuxt-property-decorator";
 
 @Component({})
 export default class Map extends Vue {
-  showInfo = false
-  zoom = 13
-  sanFrancisco = { lat: 37.73719423068097, lng: -122.45203170721543 }
-  center = this.sanFrancisco
+  showInfo = false;
+  zoom = 13;
+  sanFrancisco = { lat: 37.73719423068097, lng: -122.45203170721543 };
+  center = this.sanFrancisco;
 
   infoContext = {
     position: {
       lat: 44.2899,
-      lng: 11.8774,
+      lng: 11.8774
     },
     title: "",
-    description: "",
-  }
+    description: ""
+  };
 
   @Prop({ default: [], required: true })
-  locations!: Facility[]
+  locations!: Facility[];
 
   @Prop({ default: null })
-  selected!: Facility | null
+  selected!: Facility | null;
 
   @Watch("selected")
   handleSelected(val: Facility) {
     if (val) {
-      this.toggleInfoWindow(val)
+      this.toggleInfoWindow(val);
     }
   }
 
   calculatePosition(item: Facility) {
-    return { lat: item.latitude, lng: item.longitude }
+    return { lat: item.latitude, lng: item.longitude };
   }
 
   toggleInfoWindow(context: Facility) {
     this.infoContext = {
       position: this.calculatePosition(context),
       title: context.name,
-      description: context.foodItems,
-    }
-    this.showInfo = true
+      description: context.foodItems
+    };
+    this.showInfo = true;
   }
 
   infoClicked() {
-    this.showInfo = false
+    this.showInfo = false;
   }
 }
 </script>
