@@ -3,7 +3,8 @@
 ### Progress
 - [x] Workspace setup
   - [x] Api setup
-- [] Containers setup
+- [ ] Containers setup
   - [x] Nginx
   - [x] Api
-  - [] App
+  - [ ] App
+- [ ] Deploy
