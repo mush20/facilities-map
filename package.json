@@ -1,0 +1,11 @@
+{
+  "name": "nnnco",
+  "version": "1.0.0",
+  "description": "NNNCO",
+  "author": "Pedro Mello <pedrohmello@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
