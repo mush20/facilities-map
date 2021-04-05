@@ -1,5 +1,9 @@
 ### Tech Test
 
 ### Progress
-- [x] Workspace initial setup
+- [x] Workspace setup
   - [x] Api setup
+- [] Containers setup
+  - [x] Nginx
+  - [x] Api
+  - [] App
