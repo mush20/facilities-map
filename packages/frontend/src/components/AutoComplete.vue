@@ -22,7 +22,7 @@
           >
             <div class="d-flex w-100 justify-content-between">
               <h6>{{ item.name }}</h6>
-              <small>{{ item.status }}</small>
+              <small>Status: {{ item.status }}</small>
             </div>
             <div class="d-flex w-100 justify-content-between">
               <small>{{ item.foodItems }}</small>
@@ -83,12 +83,20 @@ export default class AutoComplete extends Vue {
   border-radius: 0;
 }
 
+.gm-style-iw {
+  padding: 0!important;
+}
+
 .popover {
   max-width: none;
   width: 100%;
   margin-left: 50px;
   margin-top: 25px;
   border-radius: 0;
+
+  &-body {
+    padding: 0;
+  }
 
   .arrow {
     display: none !important;

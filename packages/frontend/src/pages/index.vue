@@ -1,34 +1,46 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">frontend</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div class="h-100 w-100">
+    <AutoComplete :data="results" @search="test" @select="setSelected" />
+    <Map :locations="items" :selected="selected" />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue"
+import AutoComplete from "@/components/AutoComplete.vue";
+import Map from "@/components/Map.vue";
+import { Component, Vue } from "nuxt-property-decorator";
 
-export default Vue.extend({})
+import { Facilities } from "@/store/facilities";
+
+@Component({ components: { Map, AutoComplete } })
+export default class HomePage extends Vue {
+  @Facilities.State
+  public results!: string[];
+
+  @Facilities.State
+  public selected!: string[];
+
+  @Facilities.State
+  public items!: unknown[];
+
+  @Facilities.Action
+  public fetchAll!: () => void;
+
+  @Facilities.Mutation
+  public search!: (text: string) => void;
+
+  @Facilities.Mutation
+  public setSelected!: (text: string) => void;
+
+  mounted() {
+    this.fetchAll();
+  }
+
+  test(test: string) {
+    this.search(test);
+    console.log(`viva-${test}`);
+  }
+}
 </script>
 
 <style>
@@ -39,27 +51,5 @@ export default Vue.extend({})
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
 }
 </style>

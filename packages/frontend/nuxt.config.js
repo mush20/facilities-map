@@ -1,3 +1,5 @@
+const target = process.env.API_URL || 'http://localhost:3001';
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -43,8 +45,18 @@ export default {
           /* rest of libraries */
         ]
       }
-    ]
+    ],
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
+
+  axios: {
+    proxy: true
+  },
+
+  proxy: {
+    '/api/': { target: 'http://localhost:3001', pathRewrite: { '^/api/': '' }, changeOrigin: true }
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

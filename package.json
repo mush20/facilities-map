@@ -9,6 +9,8 @@
     "packages/*"
   ],
   "scripts": {
-    "api": "yarn workspace @fac/api run"
+    "api": "yarn workspace @fac/api run",
+    "frontend": "yarn workspace @fac/frontend run",
+    "start": "docker-compose up"
   }
 }

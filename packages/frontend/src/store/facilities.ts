@@ -1,5 +1,8 @@
+import axios from "axios";
 import { MutationAction, namespace } from "nuxt-property-decorator";
 import { Module, Mutation, VuexModule } from "vuex-module-decorators";
+import { from, of } from "rxjs";
+import { retryWhen, take, tap, delay, switchMap } from "rxjs/operators";
 
 export interface Facility {
     id: string;
@@ -24,6 +27,16 @@ function filterResults(text: string, item: Facility) {
         item.status,
         item.facilityType
     ].filter((value) => value && regex.test(value)).length > 0;
+}
+
+function persistData(items: Facility[]) {
+
+    if (items.length > 0) {
+        window.localStorage.setItem("items", JSON.stringify(items));
+        return items;
+    }
+
+    return JSON.parse(window.localStorage.getItem("items") ?? "[]");
 }
 
 @Module({
@@ -53,8 +66,18 @@ export default class FacilitiesModule extends VuexModule {
 
     @MutationAction({ mutate: ["items"] })
     async fetchAll() {
-        const response = await fetch(`${process.env.API_URL}/facilities`);
-        const items = await response.json();
+
+        // it will try to reach the api 5 times
+        const data = await from(axios.get(`/api/facilities`)).pipe(
+            switchMap((response) => of(response.status === 200 ? response.data : [])),
+            retryWhen(errors => errors.pipe(
+                delay(2000),
+                tap(() => console.log("Retrying connection...")),
+                take(5)
+            ))
+        ).toPromise();
+
+        const items = persistData(data ?? []);
 
         return { items };
     }

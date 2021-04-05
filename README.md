@@ -1,4 +1,12 @@
-### Tech Test
+## San Francisco Street Food Facilities Map
+
+Make sure you have [Docker](https://docs.docker.com/get-docker/) installed.
+
+On a terminal:
+```yarn start```
+
+On a browser: ```localhost:8080```
+
 
 ### Progress
 - [x] Workspace setup
@@ -9,9 +17,13 @@
   - [x] App
 - [x] Backend
   - [x] Mock data
-- [ ] Frontend
-  - [ ] Layout
-  - [ ] Store
+- [x] Frontend
+  - [x] Layout
+  - [x] Store
   - [x] Map
-  - [ ] Autocomplete
-  - [ ] Resilience
+  - [x] Autocomplete
+  - [x] Resilience
+
+### Next Steps
+- Adding tests
+- Shared library
