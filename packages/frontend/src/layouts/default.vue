@@ -1,7 +1,7 @@
 <template>
   <div class="h-100 w-100">
     <b-navbar toggleable="lg" type="dark" variant="primary">
-      <b-navbar-brand href="#">Films</b-navbar-brand>
+      <b-navbar-brand href="#">San Francisco Facilities</b-navbar-brand>
     </b-navbar>
     <Nuxt />
   </div>
