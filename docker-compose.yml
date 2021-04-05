@@ -17,3 +17,8 @@ services:
       - 3001:3001
     environment:
       - PORT=3001
+  frontend:
+    build: ./packages/frontend
+    container_name: nnnco-frontend
+    ports: 
+      - 3000:3000
