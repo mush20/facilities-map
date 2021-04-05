@@ -1,7 +1,7 @@
 {
-  "name": "nnnco",
+  "name": "fac",
   "version": "1.0.0",
-  "description": "NNNCO",
+  "description": "Facilities Map",
   "author": "Pedro Mello <pedrohmello@gmail.com>",
   "license": "MIT",
   "private": true,
@@ -9,6 +9,6 @@
     "packages/*"
   ],
   "scripts": {
-    "api": "yarn workspace @nnnco/api run"
+    "api": "yarn workspace @fac/api run"
   }
 }
