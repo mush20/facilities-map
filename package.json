@@ -7,5 +7,8 @@
   "private": true,
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "api": "yarn workspace @nnnco/api run"
+  }
 }
